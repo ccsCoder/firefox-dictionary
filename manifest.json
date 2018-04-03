@@ -1,0 +1,26 @@
+{
+
+  "manifest_version": 2,
+  "name": "Dict-popup",
+  "version": "1.0",
+
+  "description": "dictionary",
+  "icons": {
+    "48": "icons/dict.png"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+
+  "browser_action": {
+    "default_popup": "popup/meaning.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["dict.js"]
+    }
+  ]
+}
