@@ -1,5 +1,4 @@
-{
-	"key": "dict.1.1.20180403T065159Z.94719d11e1c1c7d8.49f32146b29eab627b71069559ac325d584adc3f",
-	"url":"https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=APIkey&lang=en-en&text="
-	
+
+ {
+	"api": "https: //owlbot.info/api/v2/dictionary/"
 }
