@@ -1,7 +1,57 @@
+let dictionaryAPI = (function(activeAPI){
+	activeAPI = activeAPI || 'google';
+	const apis = {
+		'owlbot': {
+			'url': 'https://owlbot.info/api/v2/dictionary/',
+			'uriSuffix': '',
+			'dataTransformer': 'owlbotTransformer'
+		},	
+		'google': {
+			'url': 'https://googledictionaryapi.eu-gb.mybluemix.net/',
+			'uriSuffix' : '?define=',
+			'dataTransformer': 'googleTransformer'
+		}
+	};
+
+	function googleTransformer(json) {
+		
+	}
+	
+	const endpoint = apis[activeAPI].url + apis[activeAPI].urlSuffix;
+	
+	function _fetchWordDef(word) {
+		let req = new Request(endpoint + word, {
+			method: 'GET'
+		});
+		return fetch(req)
+		.then((response)=>{
+			if (response.status === 200) {
+				return response.json();
+			} else {
+				throw response.status;
+			}
+		})
+		.then((responseJson)=> {
+			let transformer = apis[activeAPI].dataTransformer;
+			transformer = transformer;
+			return transformer(responseJson);
+
+		})
+		.catch((err)=> {
+			return {
+				error: err
+			}
+		})
+	}
+
+		
+
+});
+
 var dictionary = (function(){
 	
 	var popupRef;
-	var apiUrl = 'https://owlbot.info/api/v2/dictionary/';
+	
 
 
 	function init() {
